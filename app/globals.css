@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3D Book Page Flip Styles */
+.perspective-book {
+  perspective: 2600px;
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Realistic Book Paper Stack Side Edge Simulation */
+.book-pages-stack {
+  box-shadow: 
+    0 1px 1px rgba(0,0,0,0.15),
+    0 2px 2px rgba(0,0,0,0.12),
+    0 4px 4px rgba(0,0,0,0.1),
+    0 8px 8px rgba(0,0,0,0.08),
+    0 16px 16px rgba(0,0,0,0.06),
+    0 28px 45px rgba(0,0,0,0.55),
+    -6px 0 14px rgba(0,0,0,0.4),
+    6px 0 14px rgba(0,0,0,0.3);
+}
+
+/* Dynamic Paper Curl Shadow */
+.paper-curl-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.06) 8%,
+    rgba(255, 255, 255, 0.25) 18%,
+    rgba(255, 255, 255, 0.0) 32%,
+    rgba(0, 0, 0, 0.03) 70%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+  pointer-events: none;
+}
+
+/* Paper Dog-Ear Curl Corner */
+.dog-ear-curl-br {
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.dog-ear-curl-br:hover {
+  transform: scale(1.15) translate(-2px, -2px);
+}
+
+.dog-ear-curl-bl {
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.dog-ear-curl-bl:hover {
+  transform: scale(1.15) translate(2px, -2px);
+}

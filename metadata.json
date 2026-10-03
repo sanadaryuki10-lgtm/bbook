@@ -1,0 +1,6 @@
+{
+  "name": "The Brew Protocol Codex — BNB Chain Guide & Data Compendium",
+  "description": "Illustrated interactive codex and complete data compendium for Brew Protocol (brew.family) on BNB Smart Chain: historical chronicles, technical architecture blueprints, verified smart contracts, 1,050+ token launches, 25 quote assets, swap simulator, and launch studio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
