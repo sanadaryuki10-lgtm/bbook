@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ChevronLeft, 
@@ -42,29 +42,34 @@ export default function BookViewer() {
 
   const totalPages = 20;
   const t = getTranslation(lang);
+  const currentPageRef = useRef(currentPage);
+
+  useEffect(() => {
+    currentPageRef.current = currentPage;
+  }, [currentPage]);
 
   const goToPage = useCallback((targetPage: number) => {
     if (targetPage < 0 || targetPage > totalPages) return;
-    setFlipDirection(targetPage > currentPage ? 'next' : 'prev');
+    setFlipDirection(targetPage > currentPageRef.current ? 'next' : 'prev');
     setCurrentPage(targetPage);
     if (soundEnabled) {
       playPageFlipSound();
     }
-  }, [currentPage, soundEnabled, totalPages]);
+  }, [soundEnabled, totalPages]);
 
   const nextPage = useCallback(() => {
-    if (currentPage < totalPages) {
-      goToPage(currentPage + 1);
+    if (currentPageRef.current < totalPages) {
+      goToPage(currentPageRef.current + 1);
     }
-  }, [currentPage, totalPages, goToPage]);
+  }, [totalPages, goToPage]);
 
   const prevPage = useCallback(() => {
-    if (currentPage > 0) {
-      goToPage(currentPage - 1);
+    if (currentPageRef.current > 0) {
+      goToPage(currentPageRef.current - 1);
     }
-  }, [currentPage, goToPage]);
+  }, [goToPage]);
 
-  // Keyboard navigation
+  // Keyboard navigation mounted once
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || e.target instanceof HTMLSelectElement) {
